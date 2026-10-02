@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>User Registration</title>
+
+    <!-- <link
+        rel="stylesheet"
+        href="/style.css"
+    > -->
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <h1>
+        User Registration Form
+    </h1>
+    <% if (errors && errors.length > 0) { %>
+
+    <div style="color: red;">
+        <ul>
+            <% errors.forEach(function(error) { %>
+                <li><%= error.msg %></li>
+            <% }); %>
+        </ul>
+    </div>
+
+<% } %>
+
+    <!-- ========================================= -->
+    <!-- ERROR MESSAGE -->
+    <!-- ========================================= -->
+
+    <% if (errors.length > 0) { %>
+
+
+        <div class="error-box">
+
+            <h3>
+                Please correct the following errors:
+            </h3>
+
+
+            <ul>
+
+                <% errors.forEach(function(error) { %>
+
+                    <li>
+                        <%= error.msg %>
+                    </li>
+
+                <% }); %>
+
+            </ul>
+
+        </div>
+
+
+    <% } %>
+
+
+    <!-- ========================================= -->
+    <!-- FORM -->
+    <!-- ========================================= -->
+
+    <form
+        action="/register"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+
+        <!-- USERNAME -->
+
+        <div class="form-group">
+
+            <label for="username">
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                value="<%= old.username %>"
+                placeholder="Enter username"
+            >
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter password"
+            >
+
+        </div>
+
+
+        <!-- CONFIRM PASSWORD -->
+
+        <div class="form-group">
+
+            <label for="confirmPassword">
+                Confirm Password
+            </label>
+
+            <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm password"
+            >
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                value="<%= old.email %>"
+                placeholder="Enter email"
+            >
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- GENDER -->
+        <!-- ========================================= -->
+
+        <div class="form-group">
+
+            <label>
+                Gender
+            </label>
+
+
+            <div class="options">
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Male"
+
+                        <%= old.gender === "Male"
+                            ? "checked"
+                            : "" %>
+                    >
+
+                    Male
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Female"
+
+                        <%= old.gender === "Female"
+                            ? "checked"
+                            : "" %>
+                    >
+
+                    Female
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Other"
+
+                        <%= old.gender === "Other"
+                            ? "checked"
+                            : "" %>
+                    >
+
+                    Other
+
+                </label>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- HOBBIES -->
+        <!-- ========================================= -->
+
+        <div class="form-group">
+
+            <label>
+                Hobbies
+            </label>
+
+
+            <div class="options">
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="hobbies"
+                        value="Reading"
+
+                        <%= old.hobbies.includes("Reading")
+                            ? "checked"
+                            : "" %>
+                    >
+
+                    Reading
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="hobbies"
+                        value="Sports"
+
+                        <%= old.hobbies.includes("Sports")
+                            ? "checked"
+                            : "" %>
+                    >
+
+                    Sports
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="hobbies"
+                        value="Music"
+
+                        <%= old.hobbies.includes("Music")
+                            ? "checked"
+                            : "" %>
+                    >
+
+                    Music
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="hobbies"
+                        value="Travel"
+
+                        <%= old.hobbies.includes("Travel")
+                            ? "checked"
+                            : "" %>
+                    >
+
+                    Travel
+
+                </label>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- PROFILE PICTURE -->
+        <!-- ========================================= -->
+
+        <div class="form-group">
+
+
+            <label for="profilePic">
+
+                Upload Profile Picture
+
+            </label>
+
+
+            <input
+                type="file"
+                id="profilePic"
+                name="profilePic"
+                accept="image/*"
+            >
+
+
+            <small>
+
+                Required. JPG, JPEG, PNG, GIF or WEBP.
+                Maximum size: 2 MB.
+
+            </small>
+
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- OTHER PICTURES -->
+        <!-- ========================================= -->
+
+        <div class="form-group">
+
+
+            <label for="otherPics">
+
+                Upload Other Pictures
+
+            </label>
+
+
+            <input
+                type="file"
+                id="otherPics"
+                name="otherPics"
+                accept="image/*"
+                multiple
+            >
+
+
+            <small>
+
+                Optional. Maximum 5 images.
+                Maximum 2 MB per image.
+
+            </small>
+
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- SUBMIT -->
+        <!-- ========================================= -->
+
+        <button
+            type="submit"
+        >
+
+            Register
+
+        </button>
+
+
+    </form>
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Registration Successful</title>
+<!-- 
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    > -->
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <h1>
+        Registration Successful
+    </h1>
+
+
+    <div class="success-box">
+
+        All data has been submitted successfully.
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- DATA TABLE -->
+    <!-- ========================================= -->
+
+    <table>
+
+
+        <tr>
+
+            <th>
+                Field
+            </th>
+
+            <th>
+                Details
+            </th>
+
+        </tr>
+
+
+        <!-- USERNAME -->
+
+        <tr>
+
+            <td>
+                Username
+            </td>
+
+            <td>
+                <%= user.username %>
+            </td>
+
+        </tr>
+
+
+        <!-- EMAIL -->
+
+        <tr>
+
+            <td>
+                Email
+            </td>
+
+            <td>
+                <%= user.email %>
+            </td>
+
+        </tr>
+
+
+        <!-- GENDER -->
+
+        <tr>
+
+            <td>
+                Gender
+            </td>
+
+            <td>
+                <%= user.gender %>
+            </td>
+
+        </tr>
+
+
+        <!-- HOBBIES -->
+
+        <tr>
+
+            <td>
+                Hobbies
+            </td>
+
+            <td>
+
+                <%= user.hobbies.join(", ") %>
+
+            </td>
+
+        </tr>
+
+
+        <!-- PROFILE PICTURE -->
+
+        <tr>
+
+            <td>
+                Profile Picture
+            </td>
+
+            <td>
+
+               <img src="/uploads/profile/<%= user.profilePic.filename %>" width="150" height="150">
+
+            </td>
+
+        </tr>
+
+
+        <!-- OTHER PICTURES -->
+
+        <tr>
+
+            <td>
+                Other Pictures
+            </td>
+
+            <td>
+
+
+                <% if (user.otherPics.length === 0) { %>
+
+
+                    <p>
+                        No other pictures uploaded.
+                    </p>
+
+
+                <% } else { %>
+
+
+                    <div class="gallery">
+
+
+                        <% user.otherPics.forEach(function(pic) { %>
+
+
+                            <img src="/uploads/others/<%= pic.filename %>" width="150" height="150">
+
+
+                        <% }); %>
+
+
+                    </div>
+
+
+                <% } %>
+
+
+            </td>
+
+        </tr>
+
+
+    </table>
+
+
+    <!-- ========================================= -->
+    <!-- BUTTONS -->
+    <!-- ========================================= -->
+
+    <div class="actions">
+
+
+        <a
+            href="/download"
+            class="download-btn"
+        >
+
+            Download Registration Details
+
+        </a>
+
+
+        <a
+            href="/"
+            class="back-btn"
+        >
+
+            Register Another User
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
